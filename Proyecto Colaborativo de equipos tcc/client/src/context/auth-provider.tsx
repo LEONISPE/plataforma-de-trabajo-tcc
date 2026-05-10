@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createContext, useContext, useEffect } from "react";
 import useWorkspaceId from "@/hooks/use-workspace-id";
+import { socket } from "@/lib/socket";
 import useAuth from "@/hooks/api/use-auth";
 import { UserType, WorkspaceType } from "@/types/api.type";
 import useGetWorkspaceQuery from "@/hooks/api/use-get-workspace";
@@ -37,6 +38,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     refetch: refetchAuth,
   } = useAuth();
   const user = authData?.user;
+  // 👇 🔥 AQUÍ MISMO
+useEffect(() => {
+  if (user?._id) {
+    socket.emit("join", user._id);
+    console.log("Socket unido al user:", user._id);
+  }
+}, [user]);
 
   const {
     data: workspaceData,

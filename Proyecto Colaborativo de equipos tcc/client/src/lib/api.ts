@@ -207,8 +207,17 @@ export const createTaskMutationFn = async ({
 };
 export const getMessagesFn = async (workspaceId: string, otherUserId: string) => {
   const res = await fetch(
-    `/workspace/${workspaceId}?otherUserId=${otherUserId}`
+    `${BASE_URL}/message/workspace/${workspaceId}?otherUserId=${otherUserId}`,
+    {
+      method: "GET",
+      credentials: "include", // 🔥 IMPORTANTE (session)
+    }
   );
+
+  if (!res.ok) {
+    throw new Error("Error obteniendo mensajes");
+  }
+
   return res.json();
 };
 

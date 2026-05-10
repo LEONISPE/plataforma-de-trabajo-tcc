@@ -216,7 +216,7 @@ export default function EditTaskForm({ task, onClose }: { task: TaskType; onClos
 
             <Button type="submit" className="w-full" disabled={isPending}>
               {isPending && <Loader className="animate-spin" />}
-              Save Changes
+              Guardar Cambios
             </Button>
           </form>
         </Form>
