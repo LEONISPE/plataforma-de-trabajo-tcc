@@ -27,10 +27,10 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   isLoading,
   onClose,
   onConfirm,
-  title = "Confirm Action",
-  description = "Are you sure you want to perform this action?",
-  confirmText = "Confirm",
-  cancelText = "Cancel",
+  title = "Confirmar Accion",
+  description = "Estás seguro de que quieres realizar esta acción?",
+  confirmText = "Confirmar",
+  cancelText = "Cancelar",
   children,
 }) => {
   const handleClose = () => {

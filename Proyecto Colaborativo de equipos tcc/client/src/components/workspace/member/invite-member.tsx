@@ -25,8 +25,8 @@ const InviteMember = () => {
       navigator.clipboard.writeText(inviteUrl).then(() => {
         setCopied(true);
         toast({
-          title: "Copied",
-          description: "Invite url copied to clipboard",
+          title: "Copiado",
+          description: "url de invitacion copiado",
           variant: "success",
         });
         setTimeout(() => setCopied(false), 2000);

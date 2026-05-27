@@ -131,7 +131,7 @@ const AllMembers = () => {
                           <Loader className="w-8 h-8 animate-spin place-self-center flex my-4" />
                         ) : (
                           <>
-                            <CommandEmpty>No roles found.</CommandEmpty>
+                            <CommandEmpty>No roles encontrados.</CommandEmpty>
                             <CommandGroup>
                               {roles?.map(
                                 (role) =>
