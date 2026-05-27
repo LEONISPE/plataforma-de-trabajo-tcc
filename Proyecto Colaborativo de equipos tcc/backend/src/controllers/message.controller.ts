@@ -8,7 +8,7 @@ export const sendMessageController = asyncHandler(
   async (req: Request, res: Response) => {
     const senderId = req.user?._id;
     const { receiverId, content } = req.body;
-    const { workspaceId } = req.params;
+    const workspaceId = req.params.workspaceId as string;
 
     const message = await sendMessageService(
       workspaceId,
@@ -34,7 +34,7 @@ export const sendMessageController = asyncHandler(
 export const getMessagesController = asyncHandler(
   async (req: Request, res: Response) => {
     const userId = req.user?._id;
-    const { workspaceId } = req.params;
+   const workspaceId = req.params.workspaceId as string;
     const { otherUserId } = req.query;
 
     const messages = await getMessagesService(

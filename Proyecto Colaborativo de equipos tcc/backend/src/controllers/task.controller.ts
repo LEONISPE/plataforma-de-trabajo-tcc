@@ -157,7 +157,7 @@ export const deleteTaskController = asyncHandler(
 export const createCommentController = asyncHandler(
   async (req: Request, res: Response) => {
     const userId = req.user?._id;
-    const { taskId } = req.params;
+    const taskId = req.params.taskId as string;
     const { message } = req.body;
 
     const comment = await createCommentService(taskId, userId, message);
