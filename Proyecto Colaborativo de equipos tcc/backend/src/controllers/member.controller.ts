@@ -32,19 +32,31 @@ const userId = String(
   }
 );
 
-export const getWorkspaceMembersController = asyncHandler(
-  async (req: Request, res: Response) => {
-    const workspaceId = req.params.workspaceId;
-    const currentUserId = req.user?._id;
+export const getWorkspaceMembersController =
+  asyncHandler(
+    async (
+      req: Request,
+      res: Response
+    ) => {
 
-    const members = await getWorkspaceMembersService(
-      workspaceId,
-      currentUserId
-    );
+      const workspaceId = String(
+        req.params.workspaceId
+      );
 
-    return res.status(200).json({
-      message: "Miembros obtenidos correctamente",
-      data: members,
-    });
-  }
-);
+      const currentUserId = String(
+        req.user?._id
+      );
+
+      const members =
+        await getWorkspaceMembersService(
+          workspaceId,
+          currentUserId
+        );
+
+      return res.status(200).json({
+        message:
+          "Miembros obtenidos correctamente",
+        data: members,
+      });
+    }
+  );
