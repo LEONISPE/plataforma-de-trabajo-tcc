@@ -16,7 +16,7 @@ const CreateTaskDialog = (props: { projectId?: string }) => {
         <DialogTrigger>
           <Button>
             <Plus />
-            Nueva Tarea
+            Nueva Tarea 
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-lg max-h-auto my-5 border-0">

@@ -19,19 +19,26 @@ export const sendMessageService = async (
   return message;
 };
 
+
+
 export const getMessagesService = async (
   workspaceId: string,
   userId: string,
   otherUserId: string
 ) => {
-  const messages = await MessageModel.find({
+  return await MessageModel.find({
     workspaceId,
     $or: [
-      { senderId: userId, receiverId: otherUserId },
-      { senderId: otherUserId, receiverId: userId },
+      {
+        senderId: userId,
+        receiverId: otherUserId,
+      },
+      {
+        senderId: otherUserId,
+        receiverId: userId,
+      },
     ],
-  })
-    .sort({ createdAt: 1 });
-
-  return messages;
+  }).sort({
+    createdAt: 1,
+  });
 };

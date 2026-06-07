@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { Row } from "@tanstack/react-table";
 import { MoreHorizontal, Pencil } from "lucide-react";
-import TaskMessagesDialog from "../table/TaskMessagesDialog"
-import TaskMessages from "../table/TaskMessages";
-
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -29,8 +25,6 @@ interface DataTableRowActionsProps {
 export function DataTableRowActions({ row }: DataTableRowActionsProps) {
   const [openDeleteDialog, setOpenDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false); // State for edit dialog
-  const [openMessageDialog, setOpenMessageDialog] = useState(false);
-  const [openMessage, setOpenMessage] = useState(false);
   const queryClient = useQueryClient();
   const workspaceId = useWorkspaceId();
 
@@ -75,20 +69,7 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
             <Pencil className="w-4 h-4 mr-2" /> Editar Tarea
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem
-            className="cursor-pointer"
-            onClick={() => setOpenMessageDialog(true)}
-          >
-            💬 Comentario de tarea
-          </DropdownMenuItem>
-
-          <DropdownMenuItem
-            className="cursor-pointer"
-            onClick={() => setOpenMessage(true)}
-          >
-            💬 Mensaje
-          </DropdownMenuItem>
-
+      
 
           {/* Delete Task Option */}
           <DropdownMenuItem
@@ -116,20 +97,6 @@ export function DataTableRowActions({ row }: DataTableRowActionsProps) {
         cancelText="Cancelar"
       />
 
-      <TaskMessages
-        isOpen={openMessage}
-        onClose={() => setOpenMessage(false)}
-        workspaceId={workspaceId}
-    otherUserId={task.assignedTo?._id || ""}
-    />
-      
-      
-  <TaskMessagesDialog
-    isOpen={openMessageDialog}
-    onClose={() => setOpenMessageDialog(false)}
-    workspaceId={workspaceId}
-    otherUserId={task.assignedTo?._id || ""}
-  />
     </>
     
     

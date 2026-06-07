@@ -69,6 +69,46 @@ useEffect(() => {
     return permissions.includes(permission);
   };
 
+  console.log("USER AUTH:", user);
+  useEffect(() => {
+  if (!user?._id) return;
+
+  if (socket.connected) {
+
+    console.log(
+      "EMITIENDO JOIN:",
+      user._id
+    );
+
+    socket.emit(
+      "join",
+      user._id
+    );
+
+  } else {
+
+    socket.on("connect", () => {
+
+      console.log(
+        "EMITIENDO JOIN DESPUÉS DE CONNECT:",
+        user._id
+      );
+
+      socket.emit(
+        "join",
+        user._id
+      );
+
+    });
+
+  }
+
+}, [user]);
+
+useEffect(() => {
+  console.log("AuthProvider montado");
+}, []);
+
   return (
     <AuthContext.Provider
       value={{

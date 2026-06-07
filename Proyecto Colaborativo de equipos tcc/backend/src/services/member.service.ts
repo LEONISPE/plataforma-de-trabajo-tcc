@@ -1,4 +1,6 @@
 import { ErrorCodeEnum } from "../enums/error-code.enum";
+import mongoose from "mongoose";
+import UserModel from "../models/user.model";
 import { Roles } from "../enums/role.enum";
 import MemberModel from "../models/member.model";
 import RoleModel from "../models/roles-permission.model";
@@ -34,6 +36,31 @@ export const getMemberRoleInWorkspace = async (
 
   return { role: roleName };
 };
+
+
+
+export const getWorkspaceMembersService = async (
+  workspaceId: string,
+  currentUserId: string
+) => {
+  const members = await MemberModel.find({
+    workspaceId,
+  });
+
+  const userIds = members.map(
+    (member) => member.userId
+  );
+
+  const users = await UserModel.find({
+    _id: { $in: userIds },
+  }).select("-password");
+
+  return users.filter(
+    (user) =>
+      (user._id as mongoose.Types.ObjectId).toString() !== currentUserId
+  );
+};
+
 
 export const joinWorkspaceByInviteService = async (
   userId: string,
