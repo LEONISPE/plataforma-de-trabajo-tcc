@@ -12,7 +12,6 @@ import { asyncHandler } from "./middlewares/asyncHandler.middleware";
 import { BadRequestException } from "./utils/appError";
 import { ErrorCodeEnum } from "./enums/error-code.enum";
 import { initSocket } from "./socket";
-import http from "http";
 import messageRoutes from "./routes/message.route";
 import "./config/passport.config";
 import passport from "passport";
