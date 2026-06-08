@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 export const socket = io(
-   "https://plataforma-de-trabajo-tcc-f67w.onrender.com",
+   "https://plataforma-de-trabajo-tcc-24jp.onrender.com",
   {
     autoConnect: true,
   }
