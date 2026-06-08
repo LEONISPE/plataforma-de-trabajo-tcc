@@ -63,6 +63,20 @@ app.get(
     });
   })
 );
+
+
+app.get("/test-session", (req, res) => {
+  console.log("SESSION:", req.session);
+  console.log("USER:", req.user);
+
+  res.json({
+    session: req.session,
+    user: req.user,
+  });
+});
+
+
+
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./config/swagger.config";
 
