@@ -48,6 +48,10 @@ export const loginController = asyncHandler(
         if (err) {
           return next(err);
         }
+        console.log(
+          "LOGIN USER:",
+          user
+        );
 
         if (!user) {
           return res.status(HTTPSTATUS.UNAUTHORIZED).json({
@@ -56,6 +60,15 @@ export const loginController = asyncHandler(
         }
 
         req.logIn(user, (err) => {
+          console.log(
+    "SESSION DESPUES LOGIN:",
+    req.session
+  );
+
+  console.log(
+    "USER DESPUES LOGIN:",
+    req.user
+  );
           if (err) {
             return next(err);
           }
